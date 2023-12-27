@@ -17,4 +17,5 @@ conf secret: ## Upddate config
 	flyctl secrets import -a ${SERVICE} < env
 
 bash: ## Enter bash
-	flyctl ssh console -a  ${SERVICE} -C /bin/bash
+	@curl https://${SERVICE}.fly.dev -s 2>&1 1>/dev/null
+	flyctl ssh console -a  ${SERVICE} -C /bin/bash --pty
