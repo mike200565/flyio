@@ -18,4 +18,4 @@ conf secret: ## Upddate config
 
 bash: ## Enter bash
 	@curl --max-time 1 https://${SERVICE}.fly.dev -s 2>&1 1>/dev/null
-	flyctl ssh console -a  ${SERVICE} -C /bin/bash --login --pty
+	flyctl ssh console -a  ${SERVICE} --pty -C "/bin/bash --login"
