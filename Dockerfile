@@ -24,10 +24,11 @@ ENV NOTVISIBLE "in users profile"
 RUN echo 'set encoding=utf-8' >  ~/.vimrc && \
     echo 'bind "^W" ed-delete-prev-word' > ~/.editrc
 
-COPY ./init/. /etc/profile.d/
-
+COPY ./init/90-linux.sh /etc/profile.d/
+COPY ./init/98-motd.sh /etc/profile.d/
+COPY ./init/99-linux.sh  /etc/bash.bash_logout
 COPY ./init/user_profile /root/.profile
+
 #CMD ["/bin/bash", "--login"]
 #CMD ["python3", "-m", "http.server"]
 CMD ["nginx", "-g", "daemon off;"]
-
