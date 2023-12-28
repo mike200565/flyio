@@ -12,6 +12,7 @@ RUN apt update && apt install --no-install-recommends -y \
     ca-certificates \
     git \
     vim \
+    nginx \
     python3 \
     curl && \
     apt clean autoclean && \
@@ -25,16 +26,8 @@ RUN echo 'set encoding=utf-8' >  ~/.vimrc && \
 
 COPY ./init/. /etc/profile.d/
 
-#RUN cat <<EOF >> /root/.profile
-#
-### A linux learn container environment configuration.
-### Author by Airdb Team @ 2015 - Now
-#export VISIBLE=now
-#export DEBIAN_FRONTEND=noninteractive
-#export PS1='\033[32m[\u@\H \W]\033[0m\\$ '
-#
-#TMOUT=300
-#EOF
-
+COPY ./init/user_profile /root/.profile
 #CMD ["/bin/bash", "--login"]
-CMD ["python3", "-m", "http.server"]
+#CMD ["python3", "-m", "http.server"]
+CMD ["nginx", "-g", "daemon off;"]
+
